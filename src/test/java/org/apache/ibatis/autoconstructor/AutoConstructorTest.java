@@ -15,6 +15,7 @@
  */
 package org.apache.ibatis.autoconstructor;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.io.Resources;
@@ -51,6 +52,7 @@ class AutoConstructorTest {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       final AutoConstructorMapper mapper = sqlSession.getMapper(AutoConstructorMapper.class);
       final Object subject = mapper.getSubject(1);
+      System.out.println(JSON.toJSONString(subject));
       assertNotNull(subject);
     }
   }
@@ -83,7 +85,8 @@ class AutoConstructorTest {
   void extensiveSubject() {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       final AutoConstructorMapper mapper = sqlSession.getMapper(AutoConstructorMapper.class);
-      verifySubjects(mapper.getExtensiveSubject());
+      List<ExtensiveSubject> extensiveSubject = mapper.getExtensiveSubject();
+      verifySubjects(extensiveSubject);
     }
   }
 

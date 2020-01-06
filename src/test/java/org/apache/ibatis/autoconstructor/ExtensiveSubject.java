@@ -15,6 +15,8 @@
  */
 package org.apache.ibatis.autoconstructor;
 
+import lombok.Data;
+
 public class ExtensiveSubject {
     private final byte aByte;
     private final short aShort;
@@ -62,6 +64,32 @@ public class ExtensiveSubject {
     }
 
     public enum TestEnum {
-        AVALUE, BVALUE, CVALUE;
+      AVALUE("AVALUE", "aaa"),
+      BVALUE("BVALUE", "bbb"),
+      CVALUE("CVALUE", "ccc");
+
+      private String code;
+      private String name;
+
+      public String getCode() {
+        return code;
+      }
+
+      public void setCode(String code) {
+        this.code = code;
+      }
+
+      public String getName() {
+        return name;
+      }
+
+      public void setName(String name) {
+        this.name = name;
+      }
+
+      TestEnum(String code, String name) {
+        this.code = code;
+        this.name = name;
+      }
     }
 }

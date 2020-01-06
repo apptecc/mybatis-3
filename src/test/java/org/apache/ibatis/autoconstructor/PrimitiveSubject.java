@@ -15,8 +15,11 @@
  */
 package org.apache.ibatis.autoconstructor;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class PrimitiveSubject {
   private final int id;
   private final String name;
